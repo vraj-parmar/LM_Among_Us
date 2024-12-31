@@ -1,19 +1,6 @@
 import streamlit as st
 
 # Initialize Session State
-if 'progress_bars' not in st.session_state:
-    st.session_state.progress_bars = {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
-        5: 0.0,
-        6: 0.0,
-        7: 0.0,
-        8: 0.0,
-        9: 0.0,
-        10: 0.0
-    }
 
 if 'puzzle_code' not in st.session_state:
     st.session_state.puzzle_code = {
@@ -50,14 +37,11 @@ def display_form_and_process_submission():
             col2.empty()
             if is_valid_submission(inp_task, inp_code):
                 st.success("Correct")
-                update_progress_bars(inp_player)
+
                 update_total_progress_bar()
             else:
                 st.warning("Incorrect")
-
-
             display_total_progress_bars(c)
-            display_progress_bars(col2)
 
 def is_valid_submission(task, code):
     if code in st.session_state.puzzle_code.get(task, []):
@@ -67,18 +51,8 @@ def is_valid_submission(task, code):
         valid = False
     return valid
 
-def update_progress_bars(player):
-    st.session_state.progress_bars[player] = min(1.0, max(0.0, st.session_state.progress_bars[player] + 0.2))
-
 def update_total_progress_bar():
     st.session_state.total_progress_bar["total"] = min(1.0, max(0.0, st.session_state.total_progress_bar["total"] + (1/48)))
-
-def display_progress_bars(column):
-    column.subheader("Progress Bars")
-    for player in range(1, 11):
-        column.write(f"Player {player}")
-        if player in st.session_state.progress_bars:
-            column.progress(st.session_state.progress_bars[player])
 
 def display_total_progress_bars(c):
     c.progress(st.session_state.total_progress_bar["total"])
