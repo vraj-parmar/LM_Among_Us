@@ -1,5 +1,4 @@
 import streamlit as st
-from pandas.io.sas.sas_constants import col_count_p1_multiplier, col_count_p2_multiplier
 
 # Initialize Session State
 if 'progress_bars' not in st.session_state:
@@ -18,11 +17,11 @@ if 'progress_bars' not in st.session_state:
 
 if 'puzzle_code' not in st.session_state:
     st.session_state.puzzle_code = {
-        "Crossword": ["AKSHAR", "SHASTRIJI", "NEASDEN", "YOGIJI", "KESHAV", "SHREEJI", "BHAGATJI", "GUNATIT", "PRAMUKH", "MANDIR"],
-        "Library Book": ["A7R2", "P4Q1", "XCG7", "F8O3", "B9R3", "UI8J", "KQH1", "8Z46", "AQEW", "07CR"],
-        "Puzzle": ["Z8H6X2P5", "S3K9R7W1", "Q2F4Y6J8", "L1N7G5U3", "V4I6M9O2", "A7C5T1D8", "B9R3X2Z6", "H8Q1J4Y7", "BWI3KD8J", "DB37DKI9"],
+        "Decrypt Data": ["AKSHAR", "SHASTRIJI", "NEASDEN", "YOGIJI", "KESHAV", "SHREEJI", "BHAGATJI", "GUNATIT", "PRAMUKH", "MANDIR"],
+        "Log Retrieval": ["A7R2", "P4Q1", "XCG7", "F8O3", "B9R3", "UI8J", "KQH1", "8Z46", "AQEW", "07CR"],
+        "Pattern Patch": ["Z8H6X2P5", "S3K9R7W1", "Q2F4Y6J8", "L1N7G5U3", "V4I6M9O2", "A7C5T1D8", "B9R3X2Z6", "H8Q1J4Y7", "BWI3KD8J", "DB37DKI9"],
         "Book of Riddles": ["7265", "8913", "3452", "6098", "1847", "5321", "9776", "4203", "6834", "1579"],
-        "Where's Wally": ["3752", "8772", "3451", "0499", "6148", "1733", "3046", "2318", "2759", "1142"]
+        "Crewmate Camouflage": ["3752", "8772", "3451", "0499", "6148", "1733", "3046", "2318", "2759", "1142"]
     }
 
 if 'total_progress_bar' not in st.session_state:
@@ -43,7 +42,7 @@ def display_form_and_process_submission():
     col1.subheader("Form")
     with col1.form("response_form", clear_on_submit=True):
         inp_player = st.selectbox("Player", (1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
-        inp_task = st.selectbox("Task", ("Crossword", "Library Book", "Puzzle", "Book of Riddles", "Where's Wally"))
+        inp_task = st.selectbox("Task", ("Decrypt Data", "Log Retrieval", "Pattern Patch", "Book of Riddles", "Crewmate Camouflage"))
         inp_code = st.text_input("Code", "")
         submitted = st.form_submit_button("Submit")
 
